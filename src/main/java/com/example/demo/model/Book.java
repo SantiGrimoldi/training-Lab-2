@@ -1,6 +1,7 @@
 package com.example.demo.model;
 
 import com.example.demo.dto.BookDto;
+import com.example.demo.dto.CreateBookDto;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -46,6 +47,18 @@ public class Book {
             .publicationYear(createBookRequest.getPublicationYear())
             .genre(createBookRequest.getGenre())
             .isAvailable(createBookRequest.isAvailable())
+            .language(createBookRequest.getLanguage())
+            .pages(createBookRequest.getPages())
+            .build();
+    }
+
+    public static Book from(CreateBookDto createBookRequest) {
+        return Book.builder()
+            .title(createBookRequest.getTitle())
+            .author(createBookRequest.getAuthor())
+            .publicationYear(createBookRequest.getPublicationYear().longValue())
+            .genre(createBookRequest.getGenre())
+            .isAvailable(createBookRequest.getIsAvailable())
             .language(createBookRequest.getLanguage())
             .pages(createBookRequest.getPages())
             .build();
